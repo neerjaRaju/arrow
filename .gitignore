@@ -1,0 +1,26 @@
+# Godot-generated files
+.godot/
+*.translation
+
+# Android export templates and builds
+android/
+build/
+*.apk
+*.aab
+
+# Signing material must never be committed
+*.keystore
+*.jks
+*.p12
+keystore.properties
+
+# IDE and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local environment overrides
+.env
+.env.*
+!.env.example

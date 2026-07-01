@@ -1,0 +1,49 @@
+; Engine configuration file.
+; Edit through the Godot editor where possible.
+
+config_version=5
+
+[application]
+
+config/name="Arrow Escape"
+config/description="A portrait logic puzzle about clearing directional arrows from the board."
+run/main_scene="res://scenes/main/main.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.035, 0.047, 0.075, 1)
+boot_splash/show_image=false
+config/icon="res://assets/icons/app_icon.svg"
+
+[autoload]
+
+SaveManager="*res://autoload/save_manager.gd"
+AudioManager="*res://autoload/audio_manager.gd"
+LevelManager="*res://autoload/level_manager.gd"
+GameManager="*res://autoload/game_manager.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=360
+window/size/window_height_override=640
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_size=28
+
+[input]
+
+android_back={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":4194308,"unicode":0)]
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.035, 0.047, 0.075, 1)
