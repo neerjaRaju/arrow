@@ -14,6 +14,7 @@ const BLOCKED_COLOR := Color("ff7285")
 
 @onready var grid_surface: Control = %GridSurface
 @onready var grid_manager: GridManager = %GridManager
+@onready var touch_input: TouchInputController = %TouchInputController
 
 var _board_size := 0
 var _arrows: Dictionary = {}
@@ -25,7 +26,8 @@ func setup(level_data: Dictionary) -> void:
 	_arrows.clear()
 	_board_size = clampi(int(level_data.get("size", 5)), GridManager.MIN_BOARD_SIZE, GridManager.MAX_BOARD_SIZE)
 	var cell_side := floorf(540.0 / float(_board_size))
-	grid_manager.touch_enabled = true
+	grid_manager.touch_enabled = false
+	touch_input.set_input_enabled(true)
 	grid_manager.configure(Vector2i(_board_size, _board_size), cell_side)
 	_layout_grid()
 	var arrows: Array = level_data.get("arrows", [])
@@ -37,7 +39,8 @@ func setup(level_data: Dictionary) -> void:
 
 
 func _ready() -> void:
-	grid_manager.cell_selected.connect(_on_cell_selected)
+	touch_input.bind_grid(grid_manager, %TouchEffects)
+	touch_input.selection_requested.connect(_on_cell_selected)
 	grid_surface.resized.connect(_layout_grid)
 
 
@@ -64,7 +67,7 @@ func _on_arrow_pressed(cell: Vector2i) -> void:
 	if valid:
 		_arrows.erase(cell)
 		grid_manager.clear_occupant(cell)
-		grid_manager.touch_enabled = not _arrows.is_empty()
+		touch_input.set_input_enabled(not _arrows.is_empty())
 		var travel := Vector2(direction) * grid_manager.cell_size
 		var tween := create_tween().set_parallel(true)
 		tween.tween_property(cell_node, "position", cell_node.position + travel, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)

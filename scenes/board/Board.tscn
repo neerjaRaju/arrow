@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/board/board.gd" id="1_board"]
 [ext_resource type="Script" path="res://scripts/grid/GridManager.gd" id="2_grid"]
+[ext_resource type="Script" path="res://scripts/input/TouchInputController.gd" id="3_input"]
 
 [sub_resource type="StyleBoxFlat" id="BoardPanel"]
 bg_color = Color(0.07, 0.098, 0.165, 0.96)
@@ -56,3 +57,12 @@ script = ExtResource("2_grid")
 initial_columns = 5
 initial_rows = 5
 initial_cell_size = 96.0
+
+[node name="TouchEffects" type="Node2D" parent="Panel/GridSurface"]
+unique_name_in_owner = true
+
+[node name="TouchInputController" type="Node" parent="Panel/GridSurface"]
+unique_name_in_owner = true
+script = ExtResource("3_input")
+grid_manager_path = NodePath("../GridManager")
+effect_layer_path = NodePath("../TouchEffects")
