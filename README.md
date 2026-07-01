@@ -14,6 +14,7 @@ This repository targets **Godot 4.5.1**, uses **GDScript only**, and has no serv
 - Android Gradle export preset for ARM64, API 24–35
 - Rewarded-ad integration boundary documented for a later Android plugin milestone
 - Production grid engine for 5x5–10x10 boards with touch selection and JSON snapshots
+- Catmull-Rom snake engine with pooled body segments, smooth head-first movement, and AnimationTree integration
 
 ## Project layout
 
@@ -51,6 +52,7 @@ The gameplay reward flow will be mediated by an `AdManager` and a provider adapt
 godot --headless --path . --editor --quit
 godot --headless --path . --quit-after 5
 godot --headless --path . --scene res://tests/grid/GridEngineUnitTest.tscn
+godot --headless --path . --scene res://tests/snake/SnakeEngineUnitTest.tscn
 ```
 
 For a release, also export a signed AAB and test install, local save recovery, audio persistence, lifecycle pause/resume, and rewarded-ad callbacks on a physical Android device.

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/snake/Snake.gd" id="1_snake"]
+[ext_resource type="Script" path="res://scripts/snake/SnakeTail.gd" id="2_tail"]
+[ext_resource type="Script" path="res://scripts/snake/SnakeHead.gd" id="3_head"]
+
+[sub_resource type="Animation" id="Animation_idle"]
+length = 1.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snake"]
+_data = {
+"idle": SubResource("Animation_idle")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_snake"]
+states/idle/node = SubResource("AnimationNodeAnimation_idle")
+states/idle/position = Vector2(321, 100)
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_snake")
+
+[node name="BodyRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="SnakeTail" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_tail")
+
+[node name="SnakeHead" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_head")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_snake")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+tree_root = SubResource("AnimationNodeStateMachine_snake")
+anim_player = NodePath("../AnimationPlayer")
