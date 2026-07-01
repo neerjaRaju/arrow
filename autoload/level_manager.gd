@@ -1,7 +1,7 @@
 extends Node
 
-const MIN_BOARD_SIZE := 4
-const MAX_BOARD_SIZE := 7
+const MIN_BOARD_SIZE := 5
+const MAX_BOARD_SIZE := 10
 const LEVELS_PER_SIZE := 8
 const DIRECTIONS: Array[Vector2i] = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
 

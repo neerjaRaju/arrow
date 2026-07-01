@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/board/board.gd" id="1_board"]
+[ext_resource type="Script" path="res://scripts/grid/GridManager.gd" id="2_grid"]
 
 [sub_resource type="StyleBoxFlat" id="BoardPanel"]
 bg_color = Color(0.07, 0.098, 0.165, 0.96)
@@ -28,21 +29,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_board")
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -290.0
+offset_right = 290.0
+offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Panel" type="PanelContainer" parent="Center"]
-layout_mode = 2
 theme_override_styles/panel = SubResource("BoardPanel")
 
-[node name="Grid" type="GridContainer" parent="Center/Panel"]
+[node name="GridSurface" type="Control" parent="Panel"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-columns = 4
+mouse_filter = 2
+
+[node name="GridManager" type="Node2D" parent="Panel/GridSurface"]
+unique_name_in_owner = true
+script = ExtResource("2_grid")
+initial_columns = 5
+initial_rows = 5
+initial_cell_size = 96.0

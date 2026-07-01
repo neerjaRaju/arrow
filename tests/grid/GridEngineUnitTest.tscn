@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/grid/GridEngineUnitTest.gd" id="1_test"]
+[ext_resource type="Script" path="res://scripts/grid/GridManager.gd" id="2_grid"]
+
+[node name="GridEngineUnitTest" type="Node"]
+script = ExtResource("1_test")
+
+[node name="GridManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(30, 40)
+script = ExtResource("2_grid")
+touch_enabled = true
